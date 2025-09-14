@@ -6,7 +6,7 @@ Credits to:
 """
 
 # Function to convert edge list to adjacency matrix
-def convert_to_adjacency_matrix(edge_list, num_vertices):
+def convert_to_adjacency_matrix(edge_list : list[tuple[int, int]], num_vertices: int) -> list[list[int]]:
     # Initialize the adjacency matrix with all zeros
     adj_mat = [[0 for _ in range(num_vertices)] for _ in range(num_vertices)]
     
@@ -34,5 +34,5 @@ if __name__ == "__main__":
     print("Below is the Adjacency Matrix")
     for row in adj_mat:
         for edge_status in row:
-            print(str(edge_status) + " "),
+            print(str(edge_status) + " ", end="")
         print("")

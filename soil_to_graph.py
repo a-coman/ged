@@ -4,21 +4,22 @@ adgency_matrix, node_labels, edges = SoilToGraph.soilToGraph(text)
 """
 
 import re
-import EdgeToAdjacency
+import edge_to_adjacency
 
 class Pair(object):
     """Entity pair with incremental ID and type, e.g. 0 - Bank"""
-    def __init__(self, id, type):
+
+    def __init__(self, id: int, type: str):
         self.id = id
         self.type = type
 
-def soilToGraph(text):
-    """Parse an instance in the .SOIL format and return its graph representation, i.e., adgency_matrix, node_labels, and edges."""
+def soilToGraph(text : str) -> tuple[list[list[int]], dict[int, str], list[tuple[int, int]]]:
+    """Parse an instance in the .SOIL format and return its graph representation, i.e., adjacency_matrix, node_labels, and edges."""
 
-    entity_map = {}     # Maps entity names to their IDs and types
-    node_labels = {}    # Stores node labels as {id: entity_type}
-    edges = []          # Stores edges as [(edgei1, edgej1), (edgei2, edgej2), ...]
-    entity_indice = 0   # Incremental id for entities
+    entity_map: dict[str, Pair] = {}     # Maps entity names to their IDs and types
+    node_labels: dict[int, str] = {}      # Stores node labels as {id: entity_type}
+    edges: list[tuple[int, int]] = []     # Stores edges as [(edgei1, edgej1), (edgei2, edgej2), ...]
+    entity_indice = 0                     # Incremental id for entities
 
     regex_labels = r"!\s*new\s+(\w+)\s*\(\s*'([^']+)'\s*\)"
     pattern_labels = re.compile(regex_labels)
@@ -59,8 +60,8 @@ def soilToGraph(text):
         print("Entity Name: {}, ID: {}, Type: {}".format(entity_name, pair.id, pair.type))
     
     # Results
-    adgency_matrix = EdgeToAdjacency.convert_to_adjacency_matrix(edges, len(node_labels))
-    return adgency_matrix, node_labels, edges
+    adjacency_matrix = edge_to_adjacency.convert_to_adjacency_matrix(edges, len(node_labels))
+    return adjacency_matrix, node_labels, edges
 
 
 # Main for testing purposes
@@ -105,9 +106,9 @@ if __name__ == "__main__":
 
     adgency_matrix, node_labels, edges = soilToGraph(text)
     
-    print("Edges: "), 
+    print("Edges: ", end="") 
     print(edges)
-    print("Adjacency matrix: "), 
+    print("Adjacency matrix: ", end="") 
     print(adgency_matrix)
-    print("Node labels: "), 
+    print("Node labels: ", end="") 
     print(node_labels)

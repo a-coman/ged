@@ -11,7 +11,7 @@ def adj_labels_to_nx(adj : list[list[float]], labels: list[str]):
     for i in range(n):
         for j in range(i+1, n):
             if adj[i][j]:
-                G.add_edge(i, j)
+                G.add_edge(i, j, weight=adj[i][j])
     return G
 
 def main():
@@ -59,8 +59,12 @@ def main():
             if i == j:
                 ged = 0.0
             else:
-                print(f"Calculating GED between graph {i} and graph {j}, computed so far: {ged_matrix[i][j]}, total graphs: {len(nx_graphs)}")
-                ged = nx.graph_edit_distance(nx_graphs[i], nx_graphs[j], node_match=lambda n1, n2: n1['label'] == n2['label'])
+                print(f"Calculating GED between graph {i} and graph {j}, total graphs: {len(nx_graphs)}")
+                ged = nx.graph_edit_distance(
+                    nx_graphs[i], nx_graphs[j],
+                    node_match=lambda n1, n2: n1['label'] == n2['label'],
+                    edge_match=lambda e1, e2: e1['weight'] == e2['weight']
+                )
             ged_matrix[i][j] = ged
             ged_matrix[j][i] = ged  # symmetric
 

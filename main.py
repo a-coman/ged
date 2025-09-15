@@ -64,7 +64,7 @@ def main():
                     nx_graphs[i], nx_graphs[j],
                     node_match=lambda n1, n2: n1['label'] == n2['label'],
                     edge_match=lambda e1, e2: e1['weight'] == e2['weight']
-                )
+                ) #TODO: Add edge label matching 
             ged_matrix[i][j] = ged
             ged_matrix[j][i] = ged  # symmetric
 

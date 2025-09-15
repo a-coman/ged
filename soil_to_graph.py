@@ -13,7 +13,7 @@ class Pair(object):
         self.id = id
         self.type = type
 
-def soilToGraph(text : str) -> tuple[list[list[int]], dict[int, str], list[tuple[int, int]]]:
+def soil_to_graph(text : str) -> tuple[list[list[int]], dict[int, str], list[tuple[int, int]]]:
     """Parse an instance in the .SOIL format and return its graph representation, i.e., adjacency_matrix, node_labels, and edges."""
 
     entity_map: dict[str, Pair] = {}     # Maps entity names to their IDs and types
@@ -104,11 +104,11 @@ if __name__ == "__main__":
     !bank2.bic := 'INBBINBB'
     """
 
-    adgency_matrix, node_labels, edges = soilToGraph(text)
+    adjacency_matrix, node_labels, edges = soil_to_graph(text)
     
     print("Edges: ", end="") 
     print(edges)
-    print("Adjacency matrix: ", end="") 
-    print(adgency_matrix)
+    print("Adjacency matrix: ", end="")
+    print(adjacency_matrix)
     print("Node labels: ", end="") 
     print(node_labels)

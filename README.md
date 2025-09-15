@@ -15,7 +15,7 @@ In our case:
 
 Additionally we also consider as edit operations:
 - Node labels (The class names, e.g., Bank, Account, Person...) which count as node substitutions if they differ.
-- Edge labels (The relationship names, e.g., user-owner, manager-employee...) which count as edge substitutions if they differ - note that edge labels are bidirectional, so a relationship "manager-employee" from A to B is considered the same as "employee-manager" from B to A.
+- [ ] **TO BE IMPLEMENTED** - Edge labels (The relationship names, e.g., user-owner, manager-employee...) which count as edge substitutions if they differ - note that edge labels are bidirectional, so a relationship "manager-employee" from A to B is considered the same as "employee-manager" from B to A.
 
 **Normalization:**
 To provide a more interpretable similarity score, we normalize the GED to a [0,1] range using the formula: `similarity = 1 - (ged / (0.5 * (ged_to_empty_A + ged_to_empty_B)))`
